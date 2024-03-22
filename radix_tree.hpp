@@ -9,9 +9,11 @@
 #include <iterator>
 #include <functional>
 
-// -------------------------------------------------
-// help function
-// -------------------------------------------------
+// =========================================================================
+
+//                              help function
+
+// =========================================================================
 
 template<typename K>
 K radix_substr(const K &key, int begin, int num);
@@ -22,6 +24,7 @@ inline std::string radix_substr<std::string>(const std::string &key, int begin, 
     return key.substr(begin, num);
 }
 
+// 对 vector<uint8_t> 的重载
 template<>
 inline std::vector<uint8_t> radix_substr<std::vector<uint8_t>>(const std::vector<uint8_t> &key, int begin, int num)
 {
@@ -41,6 +44,7 @@ inline std::string radix_join<std::string>(const std::string &key1, const std::s
     return key1 + key2;
 }
 
+// 对 vector<uint8_t> 的重载
 template<>
 inline std::vector<uint8_t> radix_join<std::vector<uint8_t>>(const std::vector<uint8_t> &key1, const std::vector<uint8_t> &key2)
 {
@@ -58,6 +62,7 @@ inline int radix_length<std::string>(const std::string &key)
     return static_cast<int>(key.size());
 }
 
+// 对 vector<uint8_t> 的重载
 template<>
 inline int radix_length<std::vector<uint8_t>>(const std::vector<uint8_t> &key)
 {
@@ -65,13 +70,11 @@ inline int radix_length<std::vector<uint8_t>>(const std::vector<uint8_t> &key)
 }
 
 
+// =========================================================================
 
+//                          基数树节点
 
-
-
-// -------------------------------------------------
-// 基数树节点
-// -------------------------------------------------
+// =========================================================================
 
 // forward declaration
 template <typename K, typename T, typename Compare> class radix_tree; 
@@ -133,9 +136,11 @@ radix_tree_node<K, T, Compare>::~radix_tree_node()
 
 
 
-// -------------------------------------------------
-// 基数树迭代器
-// -------------------------------------------------
+// =========================================================================
+
+//                                  基数树迭代器
+
+// =========================================================================
 
 // forward declaration
 template <typename K, typename T, class Compare = std::less<K> > class radix_tree;
@@ -255,9 +260,11 @@ radix_tree_it<K, T, Compare> radix_tree_it<K, T, Compare>::operator++ (int)
 }
 
 
-// -------------------------------------------------
-// 基数树
-// -------------------------------------------------
+// =========================================================================
+
+//                              基数树
+
+// =========================================================================
 template <typename K, typename T, typename Compare>
 class radix_tree {
 public:
